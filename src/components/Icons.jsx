@@ -27,3 +27,5 @@ export const SunriseIcon = () => (
 export const SunsetIcon = () => (
   <Icons src="/assets/sunset.png" alt="Sunset" className="powerful-pulse svg-hover" />
 );
+
+export default Icons;

@@ -9,23 +9,23 @@ const Icons = ({ src, alt, className }) => (
 );
 
 export const WindIcon = () => (
-  <Icons src="/assets/wind.png" alt="Wind" className="powerful-pulse svg-hover" />
+  <Icons src="/src/assets/Wind.png" alt="Wind" className="powerful-pulse svg-hover" />
 );
 
 export const HumidityIcon = () => (
-  <Icons src="/assets/humidity.png" alt="Humidity" className="powerful-pulse svg-hover" />
+  <Icons src="/src/assets/humidity.png" alt="Humidity" className="powerful-pulse svg-hover" />
 );
 
 export const VisibilityIcon = () => (
-  <Icons src="/assets/visibility.png" alt="Visibility" className="powerful-pulse svg-hover" />
+  <Icons src="/src/assets/visibility.png" alt="Visibility" className="powerful-pulse svg-hover" />
 );
 
 export const SunriseIcon = () => (
-  <Icons src="/assets/sunrise.png" alt="Sunrise" className="powerful-pulse svg-hover" />
+  <Icons src="/src/assets/sunrise.png" alt="Sunrise" className="powerful-pulse svg-hover" />
 );
 
 export const SunsetIcon = () => (
-  <Icons src="/assets/sunset.png" alt="Sunset" className="powerful-pulse svg-hover" />
+  <Icons src="/src/assets/sunset.png" alt="Sunset" className="powerful-pulse svg-hover" />
 );
 
 export default Icons;

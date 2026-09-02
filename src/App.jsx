@@ -3,6 +3,7 @@ import WeatherBackground from './components/WeatherBackground';
 import { convertTemperature, getHumidityValue, getVisibilityValue, getWindDirection } from './components/Helper';
 import { HumidityIcon, SunriseIcon, SunsetIcon, VisibilityIcon, WindIcon } from './components/Icons';
 
+
 const App = () => {
   const [weather, setWeather] = useState(null);
   const [city, setCity] = useState('');
@@ -10,7 +11,7 @@ const App = () => {
   const [unit, setUnit] = useState('C');
   const [error, setError] = useState('');
 
-  const API_KEY = 'b562627ada74c585bba37ffe577a01c0';
+  const API_KEY = import.meta.env.VITE_API_KEY;
 
   useEffect(() => {
     if (city.trim().length >= 3 && !weather) {
@@ -76,25 +77,25 @@ const App = () => {
       <div className='flex items-center justify-center p-6 min-h-screen'>
         <div className='bg-white/10 backdrop-blur-md rounded-xl shadow-2xl p-8 max-w-lg w-full text-white border border-white/20 relative z-10'>
           <h1 className='text-3xl font-bold text-center mb-8'>Weather App</h1>
-          
+
           {!weather ? (
             <div>
               <form onSubmit={handleSearch} className='flex flex-col relative'>
                 <div className='mb-6'>
                   <p className='block text-sm text-white/80 mb-4 text-center'>Enter City or Country </p>
-                  <input 
-                    value={city} 
-                    onChange={(e) => setCity(e.target.value)} 
+                  <input
+                    value={city}
+                    onChange={(e) => setCity(e.target.value)}
                     placeholder='Start typing...'
                     className='w-full p-3 rounded-lg border border-white/30 bg-white/5 text-white placeholder-white/40 focus:outline-none focus:border-blue-400 transition duration-300'
                   />
                 </div>
-                
+
                 {suggestion.length > 0 && (
                   <div className='absolute top-full left-0 right-0 bg-white/10 backdrop-blur-md rounded-md mt-1 shadow-lg z-20 overflow-hidden border border-white/20'>
                     {suggestion.map((s) => (
-                      <button 
-                        type='button' 
+                      <button
+                        type='button'
                         key={`${s.lat}-${s.lon}`}
                         onClick={() => fetchWeatherData(
                           `https://api.openweathermap.org/data/2.5/weather?lat=${s.lat}&lon=${s.lon}&appid=${API_KEY}&units=metric`,
@@ -107,9 +108,9 @@ const App = () => {
                     ))}
                   </div>
                 )}
-                
-                <button 
-                  type='submit' 
+
+                <button
+                  type='submit'
                   className='w-full py-3 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold rounded-lg transition-all duration-300 hover:shadow-lg text-lg'
                 >
                   Get Weather
@@ -119,7 +120,7 @@ const App = () => {
           ) : (
             <div>
               {/* New Search Button */}
-              <button 
+              <button
                 onClick={() => { setWeather(null); setCity(''); setError(''); }}
                 className='w-full py-3 mb-8 bg-gradient-to-r from-purple-700 to-blue-700 hover:from-purple-800 hover:to-blue-800 text-white font-semibold rounded-lg transition-all duration-300'
               >
@@ -131,8 +132,8 @@ const App = () => {
 
               {/* Main Weather Info - Icon and Temperature side by side */}
               <div className='flex items-center justify-center gap-6 mb-8'>
-                <img 
-                  src={`https://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`} 
+                <img
+                  src={`https://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`}
                   alt={weather.weather[0].description}
                   className='w-24 h-24'
                 />
@@ -141,7 +142,7 @@ const App = () => {
                     <span className='text-5xl font-bold'>
                       {convertTemperature(weather.main.temp, unit)}
                     </span>
-                    <button 
+                    <button
                       onClick={() => setUnit(u => u === 'C' ? 'F' : 'C')}
                       className='text-2xl font-semibold hover:text-blue-300 transition-colors px-2'
                     >
@@ -161,7 +162,7 @@ const App = () => {
                   <p className="font-semibold mb-1">Humidity</p>
                   <p className="text-sm">{weather.main.humidity}% ({getHumidityValue(weather.main.humidity)})</p>
                 </div>
-                
+
                 <div className="text-center">
                   <div className='flex justify-center mb-2'>
                     <WindIcon />
@@ -169,7 +170,7 @@ const App = () => {
                   <p className="font-semibold mb-1">Wind</p>
                   <p className="text-sm">{weather.wind.speed.toFixed(2)} m/s ({getWindDirection(weather.wind.deg)})</p>
                 </div>
-                
+
                 <div className="text-center">
                   <div className='flex justify-center mb-2'>
                     <VisibilityIcon />
@@ -188,7 +189,7 @@ const App = () => {
                   <p className="font-semibold mb-1">Sunrise</p>
                   <p className="text-sm">{formatDate(weather.sys.sunrise)}</p>
                 </div>
-                
+
                 <div className="text-center">
                   <div className='flex justify-center mb-2'>
                     <SunsetIcon />

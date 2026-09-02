@@ -1,14 +1,14 @@
 import React from 'react';
 
-import Thunderstorm from '../assets/Thunderstorm.gif';
-import Rain from '../assets/Rain.gif';
-import SnowDay from '../assets/Snow.gif';
-import ClearDay from '../assets/ClearDay.gif';
-import ClearNight from '../assets/ClearNight.gif';
-import CloudsDay from '../assets/CloudsDay.gif';
-import CloudsNight from '../assets/CloudsNight.gif';
-import Haze from '../assets/Haze.gif';
-import video from '../assets/video1.mp4'
+const Thunderstorm = '/assets/Thunderstorm.gif';
+const Rain = '/assets/Rain.gif';
+const SnowDay = '/assets/Snow.gif';
+const ClearDay = '/assets/ClearDay.gif';
+const ClearNight = '/assets/ClearNight.gif';
+const CloudsDay = '/assets/CloudsDay.gif';
+const CloudsNight = '/assets/CloudsNight.gif';
+const Haze = '/assets/Haze.gif';
+const video = '/assets/video1.mp4';
 
 const WeatherBackground = ({ condition }) => {
     const gifs = {
@@ -24,26 +24,26 @@ const WeatherBackground = ({ condition }) => {
         Fog: Haze,
         default: video
     };
-    const getBackground =() => {
-        if(!condition) return gifs.default;
+    const getBackground = () => {
+        if (!condition) return gifs.default;
         const weatherType = condition.main;
         const asset = gifs[weatherType];
 
-        if(!asset) return gifs.default;
-        if(typeof asset === 'object')
+        if (!asset) return gifs.default;
+        if (typeof asset === 'object')
             return condition.isDay ? asset.day : asset.night;
         return asset;
     }
 
     const background = getBackground();
-    return(
+    return (
         <div className='fixed inset-0 z-0 overflow-hidden'>
-            {background === video ?(
+            {background === video ? (
                 <video autoPlay loop muted className=' w-full h-full object-cover opacity-100 pointer-events-none 
                 animate-fade-in'>
-                    <source src={video} type='video/mp4'/>
+                    <source src={video} type='video/mp4' />
                 </video>
-            ) :(
+            ) : (
                 <img src={background} alt='Weather-bg' className='w-full h-full object-cover opacity-100 pointer-events-none 
                 animate-fade-in'/>
             )}
@@ -51,5 +51,5 @@ const WeatherBackground = ({ condition }) => {
             </div>
         </div>
     )
-    }
-    export default WeatherBackground
+}
+export default WeatherBackground
